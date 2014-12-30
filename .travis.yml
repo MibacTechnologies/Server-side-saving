@@ -1,11 +1,16 @@
-# kickstart travis.
 language: java
-before_install: sudo pip install codecov
-after_success: codecov
-
-# need to override travis 'install' since it will try gpg sign and fail.
-install: mvn clean package -DskipTests=true
-
-branches:
-  except:
-      - mvn-repo
+jdk:
+  - oraclejdk7
+  - openjdk7
+before_script: chmod a+x build.sh
+script: "./build.sh"
+deploy:
+  provider: releases
+  api-key: "8a4c91dcc72af776939a5fbf5fe4dadb1c586e0d"
+  file: "./build/jar/Server-side-saving.jar"
+  skip_cleanup: true
+  on:
+    tags: true
+    all_branches: true
+notifications:
+  email: false
