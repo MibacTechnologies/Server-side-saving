@@ -1,13 +1,10 @@
 package com.MibacTechnologies.WebDataSaving;
 
 /**
- * @author Micha≥ "mibac138" Bπczkowski
- * @since Creation date: 30 gru 2014 (01:23:24)
- */
-/**
- * @author mibac138
- *
+ * @author Micha≈Å "mibac138" BƒÖczkowski
+ * @since Creation date: 30 dec 2014 (01:23:24)
  */
 public class Response {
-
+	public Response( ) {
+	}
 }

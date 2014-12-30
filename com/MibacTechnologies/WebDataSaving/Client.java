@@ -1,17 +1,17 @@
 package com.MibacTechnologies.WebDataSaving;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
- * @author Micha³ "mibac138" B¹czkowski
- * @since Creation date: 30 gru 2014 (01:23:19)
- */
-/**
- * @author mibac138
- * 
+ * @author MichaÅ‚ "mibac138" BÄ…czkowski
+ * @since Creation date: 30 dec 2014 (01:23:19)
  */
 public class Client {
 	private String url;
@@ -26,24 +26,56 @@ public class Client {
 	/**
 	 * 
 	 * @param args
-	 * @return JSON (?) as String
+	 *            Arguments of URL (define it in constructor)<br>
+	 *            Format: "key=value&key2=value2&..."
+	 * @return JSON (?) as String. When error occurs empty string ("")
 	 */
-	public String exec ( String... args ) {
-		String url = this.url + "?";
+	public String exec ( String args ) {
+		if ( !isAvailable( ) )
+			return "";
 
-		for ( String s : args ) {
-			url += args;
+		try {
+			String url = this.url + "?" + ( args.isEmpty( ) ? "" : args );
+			URL site = new URL( url );
+
+			BufferedReader in = new BufferedReader( new InputStreamReader(
+					site.openStream( ) ) );
+
+			String data = "";
+			Pattern pattern = Pattern.compile( "\\{.*\\}", Pattern.DOTALL );
+			Matcher matcher;
+			String inputLine;
+			while ( ( inputLine = in.readLine( ) ) != null ) {
+				matcher = pattern.matcher( inputLine );
+				if ( matcher.find( ) ) {
+					data = matcher.group( );
+					break;
+				}
+			}
+
+			in.close( );
+
+			if ( data == null )
+				return "";
+
+			return data;
+		} catch ( IOException e ) {
+			return "";
 		}
-
-		return "";
 	}
 
-	public boolean isAvalible ( ) {
+	/**
+	 * 
+	 * @param timeout
+	 *            in milliseconds
+	 * @return true, if URL is available, otherwise false
+	 */
+	public boolean isAvailable ( int timeout ) {
 		try {
 			URL urlServer = new URL( url );
 			HttpURLConnection urlConn = (HttpURLConnection) urlServer
 					.openConnection( );
-			urlConn.setConnectTimeout( 3000 ); //<- 3Seconds Timeout 
+			urlConn.setConnectTimeout( timeout );
 			urlConn.connect( );
 			if ( urlConn.getResponseCode( ) == 200 )
 				return true;
@@ -55,5 +87,13 @@ public class Client {
 		} catch ( IOException e ) {
 			return false;
 		}
+	}
+
+	/**
+	 * 
+	 * @return this.isAvailable(2000)
+	 */
+	public boolean isAvailable ( ) {
+		return isAvailable( 2000 );
 	}
 }
