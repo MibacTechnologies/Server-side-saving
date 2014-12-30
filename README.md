@@ -2,4 +2,7 @@ Server-side-saving
 ==================
 Made in Java
 
-Client is the main class
+Using
+----------
+Just do:
+  > variable = new Client("yourURL");
