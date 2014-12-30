@@ -6,11 +6,6 @@
 
     <target name="compile">
         <mkdir dir="build/classes"/>
-        <javac srcdir="src" destdir="build/classes">
-        	<classpath>
-        	       <pathelement path=""/>
-        	</classpath>
-        </javac>
     </target>
 
     <target name="jar">
