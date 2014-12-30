@@ -8,7 +8,7 @@
         <mkdir dir="build/classes"/>
         <javac srcdir="src" destdir="build/classes">
         	<classpath>
-        	       <pathelement path="lib/craftbukkit.jar"/>
+        	       <pathelement path=""/>
         	</classpath>
         </javac>
     </target>
