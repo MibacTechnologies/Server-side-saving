@@ -60,7 +60,7 @@ public class Client {
 
 			return data;
 		} catch ( IOException e ) {
-			return "";
+			return null;
 		}
 	}
 
