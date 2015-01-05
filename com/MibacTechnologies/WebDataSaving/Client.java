@@ -28,7 +28,7 @@ public class Client {
 	 * @param args
 	 *            Arguments of URL (define it in constructor)<br>
 	 *            Format: "key=value&key2=value2&..."
-	 * @return JSON (?) as String. When error occurs empty string ("")
+	 * @return JSON (?) as String. When error occurs null
 	 */
 	public String exec ( String args ) {
 		if ( !isAvailable( ) )
