@@ -91,7 +91,7 @@ public class Client {
 
 	/**
 	 * 
-	 * @return this.isAvailable(2000)
+	 * @return this.isAvailable(2000) (2s)
 	 */
 	public boolean isAvailable ( ) {
 		return isAvailable( 2000 );
