@@ -14,3 +14,7 @@ deploy:
     all_branches: true
 notifications:
   email: false
+before_install:
+  sudo pip install codecov
+after_success:
+  codecov
