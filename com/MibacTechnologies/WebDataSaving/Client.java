@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 
 /**
  * @author Michał "mibac138" Bączkowski
- * @since Creation date: 30 dec 2014 (01:23:19)
+ * @since Creation date: 30 Dec 2014 (01:23:19)
  */
 public class Client {
 	private String url;
