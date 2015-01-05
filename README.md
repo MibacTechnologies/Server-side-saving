@@ -9,5 +9,6 @@ Using
 ----------
 Just do:
 ```java
-variable = new Client("yourURL");```
+variable = new Client("yourURL");
+```
 
